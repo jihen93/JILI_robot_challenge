@@ -1,0 +1,145 @@
+[0.030s] Invoking command in '/home/turtle/ros2_ws/src/build/projet2025': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/turtle/ros2_ws/src/install/test_exam:/home/turtle/ros2_ws/src/install/teleop_turtle:/home/turtle/ros2_ws/src/install/mydrone:/home/turtle/ros2_ws/src/install/mybot_teleop:/home/turtle/ros2_ws/src/install/mybot_description:/home/turtle/ros2_ws/src/install/mybot_color:/home/turtle/ros2_ws/src/install/mybot:/home/turtle/ros2_ws/install/test_exam:/home/turtle/ros2_ws/install/teleop_turtle:/home/turtle/ros2_ws/install/mydrone:/home/turtle/ros2_ws/install/mybot_teleop:/home/turtle/ros2_ws/install/mybot_description:/home/turtle/ros2_ws/install/mybot_color:/home/turtle/ros2_ws/install/mybot:/opt/ros/humble /usr/bin/cmake /home/turtle/ros2_ws/src/projet2025 -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/turtle/ros2_ws/src/install/projet2025
+[0.203s] -- The C compiler identification is GNU 11.4.0
+[0.323s] -- The CXX compiler identification is GNU 11.4.0
+[0.340s] -- Detecting C compiler ABI info
+[0.480s] -- Detecting C compiler ABI info - done
+[0.486s] -- Check for working C compiler: /usr/bin/cc - skipped
+[0.487s] -- Detecting C compile features
+[0.488s] -- Detecting C compile features - done
+[0.495s] -- Detecting CXX compiler ABI info
+[0.633s] -- Detecting CXX compiler ABI info - done
+[0.644s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[0.644s] -- Detecting CXX compile features
+[0.645s] -- Detecting CXX compile features - done
+[0.654s] -- Found ament_cmake: 1.3.11 (/opt/ros/humble/share/ament_cmake/cmake)
+[0.850s] -- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter 
+[0.936s] -- Override CMake install command with custom implementation using symlinks instead of copying resources
+[0.998s] -- Found geometry_msgs: 4.8.0 (/opt/ros/humble/share/geometry_msgs/cmake)
+[1.066s] -- Found rosidl_generator_c: 3.1.6 (/opt/ros/humble/share/rosidl_generator_c/cmake)
+[1.078s] -- Found rosidl_adapter: 3.1.6 (/opt/ros/humble/share/rosidl_adapter/cmake)
+[1.096s] -- Found rosidl_generator_cpp: 3.1.6 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)
+[1.120s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[1.148s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[1.204s] -- Found nav_msgs: 4.8.0 (/opt/ros/humble/share/nav_msgs/cmake)
+[1.227s] -- Found rclcpp: 16.0.12 (/opt/ros/humble/share/rclcpp/cmake)
+[1.291s] -- Found rmw_implementation_cmake: 6.1.2 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)
+[1.299s] -- Found rmw_fastrtps_cpp: 6.2.7 (/opt/ros/humble/share/rmw_fastrtps_cpp/cmake)
+[1.481s] -- Found OpenSSL: /usr/lib/x86_64-linux-gnu/libcrypto.so (found version "3.0.2")  
+[1.536s] -- Found FastRTPS: /opt/ros/humble/include  
+[1.606s] -- Using RMW implementation 'rmw_fastrtps_cpp' as default
+[1.627s] -- Looking for pthread.h
+[1.763s] -- Looking for pthread.h - found
+[1.764s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+[1.899s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+[1.900s] -- Found Threads: TRUE  
+[1.954s] -- Found sensor_msgs: 4.8.0 (/opt/ros/humble/share/sensor_msgs/cmake)
+[1.982s] -- Found tf2: 0.25.12 (/opt/ros/humble/share/tf2/cmake)
+[2.122s] -- Configuring done
+[2.157s] -- Generating done
+[2.172s] -- Build files have been written to: /home/turtle/ros2_ws/src/build/projet2025
+[2.182s] Invoked command in '/home/turtle/ros2_ws/src/build/projet2025' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/turtle/ros2_ws/src/install/test_exam:/home/turtle/ros2_ws/src/install/teleop_turtle:/home/turtle/ros2_ws/src/install/mydrone:/home/turtle/ros2_ws/src/install/mybot_teleop:/home/turtle/ros2_ws/src/install/mybot_description:/home/turtle/ros2_ws/src/install/mybot_color:/home/turtle/ros2_ws/src/install/mybot:/home/turtle/ros2_ws/install/test_exam:/home/turtle/ros2_ws/install/teleop_turtle:/home/turtle/ros2_ws/install/mydrone:/home/turtle/ros2_ws/install/mybot_teleop:/home/turtle/ros2_ws/install/mybot_description:/home/turtle/ros2_ws/install/mybot_color:/home/turtle/ros2_ws/install/mybot:/opt/ros/humble /usr/bin/cmake /home/turtle/ros2_ws/src/projet2025 -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/turtle/ros2_ws/src/install/projet2025
+[2.185s] Invoking command in '/home/turtle/ros2_ws/src/build/projet2025': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/turtle/ros2_ws/src/install/test_exam:/home/turtle/ros2_ws/src/install/teleop_turtle:/home/turtle/ros2_ws/src/install/mydrone:/home/turtle/ros2_ws/src/install/mybot_teleop:/home/turtle/ros2_ws/src/install/mybot_description:/home/turtle/ros2_ws/src/install/mybot_color:/home/turtle/ros2_ws/src/install/mybot:/home/turtle/ros2_ws/install/test_exam:/home/turtle/ros2_ws/install/teleop_turtle:/home/turtle/ros2_ws/install/mydrone:/home/turtle/ros2_ws/install/mybot_teleop:/home/turtle/ros2_ws/install/mybot_description:/home/turtle/ros2_ws/install/mybot_color:/home/turtle/ros2_ws/install/mybot:/opt/ros/humble /usr/bin/cmake --build /home/turtle/ros2_ws/src/build/projet2025 -- -j8 -l8
+[2.269s] [ 50%] [32mBuilding CXX object CMakeFiles/turtlebot3_drive.dir/src/turtlebot3_drive.cpp.o[0m
+[13.844s] [100%] [32m[1mLinking CXX executable turtlebot3_drive[0m
+[15.461s] [100%] Built target turtlebot3_drive
+[15.478s] Invoked command in '/home/turtle/ros2_ws/src/build/projet2025' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/turtle/ros2_ws/src/install/test_exam:/home/turtle/ros2_ws/src/install/teleop_turtle:/home/turtle/ros2_ws/src/install/mydrone:/home/turtle/ros2_ws/src/install/mybot_teleop:/home/turtle/ros2_ws/src/install/mybot_description:/home/turtle/ros2_ws/src/install/mybot_color:/home/turtle/ros2_ws/src/install/mybot:/home/turtle/ros2_ws/install/test_exam:/home/turtle/ros2_ws/install/teleop_turtle:/home/turtle/ros2_ws/install/mydrone:/home/turtle/ros2_ws/install/mybot_teleop:/home/turtle/ros2_ws/install/mybot_description:/home/turtle/ros2_ws/install/mybot_color:/home/turtle/ros2_ws/install/mybot:/opt/ros/humble /usr/bin/cmake --build /home/turtle/ros2_ws/src/build/projet2025 -- -j8 -l8
+[15.499s] Invoking command in '/home/turtle/ros2_ws/src/build/projet2025': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/turtle/ros2_ws/src/install/test_exam:/home/turtle/ros2_ws/src/install/teleop_turtle:/home/turtle/ros2_ws/src/install/mydrone:/home/turtle/ros2_ws/src/install/mybot_teleop:/home/turtle/ros2_ws/src/install/mybot_description:/home/turtle/ros2_ws/src/install/mybot_color:/home/turtle/ros2_ws/src/install/mybot:/home/turtle/ros2_ws/install/test_exam:/home/turtle/ros2_ws/install/teleop_turtle:/home/turtle/ros2_ws/install/mydrone:/home/turtle/ros2_ws/install/mybot_teleop:/home/turtle/ros2_ws/install/mybot_description:/home/turtle/ros2_ws/install/mybot_color:/home/turtle/ros2_ws/install/mybot:/opt/ros/humble /usr/bin/cmake --install /home/turtle/ros2_ws/src/build/projet2025
+[15.514s] -- Install configuration: ""
+[15.515s] -- Execute custom install script
+[15.518s] -- Symlinking: /home/turtle/ros2_ws/src/install/projet2025/lib/projet2025/turtlebot3_drive
+[15.532s] -- Symlinking: /home/turtle/ros2_ws/src/install/projet2025/share/projet2025//launch/empty_world.launch.py
+[15.543s] -- Symlinking: /home/turtle/ros2_ws/src/install/projet2025/share/projet2025//launch/projet.launch.py
+[15.557s] -- Symlinking: /home/turtle/ros2_ws/src/install/projet2025/share/projet2025//launch/robot_state_publisher.launch.py
+[15.570s] -- Symlinking: /home/turtle/ros2_ws/src/install/projet2025/share/projet2025//launch/spawn_turtlebot3.launch.py
+[15.586s] -- Symlinking: /home/turtle/ros2_ws/src/install/projet2025/share/projet2025//models/Ball/ball_random.sdf
+[15.600s] -- Symlinking: /home/turtle/ros2_ws/src/install/projet2025/share/projet2025//models/Ball/materials/textures/ballon.jpg
+[15.612s] -- Symlinking: /home/turtle/ros2_ws/src/install/projet2025/share/projet2025//models/Ball/materials/textures/ballon2.jpg
+[15.625s] -- Symlinking: /home/turtle/ros2_ws/src/install/projet2025/share/projet2025//models/Ball/materials/textures/wood.jpg
+[15.637s] -- Symlinking: /home/turtle/ros2_ws/src/install/projet2025/share/projet2025//models/Ball/model.config
+[15.649s] -- Symlinking: /home/turtle/ros2_ws/src/install/projet2025/share/projet2025//models/Ball/model.sdf
+[15.662s] -- Symlinking: /home/turtle/ros2_ws/src/install/projet2025/share/projet2025//models/Ball/model_avant_random.sdf
+[15.674s] -- Symlinking: /home/turtle/ros2_ws/src/install/projet2025/share/projet2025//models/Ball/spawn_random_ball.py
+[15.687s] -- Symlinking: /home/turtle/ros2_ws/src/install/projet2025/share/projet2025//models/CMakeLists.txt
+[15.703s] -- Symlinking: /home/turtle/ros2_ws/src/install/projet2025/share/projet2025//models/LICENSE
+[15.717s] -- Symlinking: /home/turtle/ros2_ws/src/install/projet2025/share/projet2025//models/README.md
+[15.731s] -- Symlinking: /home/turtle/ros2_ws/src/install/projet2025/share/projet2025//models/bouteille/model.config
+[15.743s] -- Symlinking: /home/turtle/ros2_ws/src/install/projet2025/share/projet2025//models/bouteille/model.sdf
+[15.757s] -- Symlinking: /home/turtle/ros2_ws/src/install/projet2025/share/projet2025//models/check_install.bash
+[15.770s] -- Symlinking: /home/turtle/ros2_ws/src/install/projet2025/share/projet2025//models/database.config.in
+[15.782s] -- Symlinking: /home/turtle/ros2_ws/src/install/projet2025/share/projet2025//models/manifest.xml.in
+[15.795s] -- Symlinking: /home/turtle/ros2_ws/src/install/projet2025/share/projet2025//models/projet_model/materials/textures/bricks.png
+[15.808s] -- Symlinking: /home/turtle/ros2_ws/src/install/projet2025/share/projet2025//models/projet_model/materials/textures/ground_texture.png
+[15.821s] -- Symlinking: /home/turtle/ros2_ws/src/install/projet2025/share/projet2025//models/projet_model/materials/textures/ground_texture2.png
+[15.833s] -- Symlinking: /home/turtle/ros2_ws/src/install/projet2025/share/projet2025//models/projet_model/materials/textures/wood.jpg
+[15.844s] -- Symlinking: /home/turtle/ros2_ws/src/install/projet2025/share/projet2025//models/projet_model/model.config
+[15.858s] -- Symlinking: /home/turtle/ros2_ws/src/install/projet2025/share/projet2025//models/projet_model/model.sdf
+[15.870s] -- Symlinking: /home/turtle/ros2_ws/src/install/projet2025/share/projet2025//models/robocup_3Dsim_goal/model.config
+[15.882s] -- Symlinking: /home/turtle/ros2_ws/src/install/projet2025/share/projet2025//models/robocup_3Dsim_goal/model.sdf
+[15.894s] -- Symlinking: /home/turtle/ros2_ws/src/install/projet2025/share/projet2025//models/robocup_3Dsim_goal/model_avant_random.sdf
+[15.907s] -- Symlinking: /home/turtle/ros2_ws/src/install/projet2025/share/projet2025//models/robocup_3Dsim_goal/spawn_random_goal.py
+[15.920s] -- Symlinking: /home/turtle/ros2_ws/src/install/projet2025/share/projet2025//models/sun/model.config
+[15.933s] -- Symlinking: /home/turtle/ros2_ws/src/install/projet2025/share/projet2025//models/sun/model.sdf
+[15.945s] -- Symlinking: /home/turtle/ros2_ws/src/install/projet2025/share/projet2025//models/tunnel.stl
+[15.959s] -- Symlinking: /home/turtle/ros2_ws/src/install/projet2025/share/projet2025//models/tunnel/model.config
+[15.972s] -- Symlinking: /home/turtle/ros2_ws/src/install/projet2025/share/projet2025//models/tunnel/model.sdf
+[15.986s] -- Symlinking: /home/turtle/ros2_ws/src/install/projet2025/share/projet2025//models/turtlebot/materials/textures/68-02421-8000-RA_Turtlebot_F-F_Standoff_color.png
+[16.001s] -- Symlinking: /home/turtle/ros2_ws/src/install/projet2025/share/projet2025//models/turtlebot/materials/textures/68-04552-1000-RA_Turtlebot_M-F_Standoff_color.png
+[16.013s] -- Symlinking: /home/turtle/ros2_ws/src/install/projet2025/share/projet2025//models/turtlebot/materials/textures/68-04552-2000-RA_Turtlebot_M-F_Standoff_color.png
+[16.025s] -- Symlinking: /home/turtle/ros2_ws/src/install/projet2025/share/projet2025//models/turtlebot/materials/textures/create_body.png
+[16.038s] -- Symlinking: /home/turtle/ros2_ws/src/install/projet2025/share/projet2025//models/turtlebot/materials/textures/plate_0_logo.png
+[16.052s] -- Symlinking: /home/turtle/ros2_ws/src/install/projet2025/share/projet2025//models/turtlebot/materials/textures/plate_1_logo.png
+[16.064s] -- Symlinking: /home/turtle/ros2_ws/src/install/projet2025/share/projet2025//models/turtlebot/materials/textures/plate_2_logo.png
+[16.076s] -- Symlinking: /home/turtle/ros2_ws/src/install/projet2025/share/projet2025//models/turtlebot/meshes/68-02403-125_Spacer.dae
+[16.089s] -- Symlinking: /home/turtle/ros2_ws/src/install/projet2025/share/projet2025//models/turtlebot/meshes/68-02421-8000-RA_Turtlebot_F-F_Standoff.dae
+[16.102s] -- Symlinking: /home/turtle/ros2_ws/src/install/projet2025/share/projet2025//models/turtlebot/meshes/68-04552-1000-RA_Turtlebot_M-F_Standoff.dae
+[16.114s] -- Symlinking: /home/turtle/ros2_ws/src/install/projet2025/share/projet2025//models/turtlebot/meshes/68-04552-2000-RA_Turtlebot_M-F_Standoff.dae
+[16.126s] -- Symlinking: /home/turtle/ros2_ws/src/install/projet2025/share/projet2025//models/turtlebot/meshes/68-04556-RA_Kinect_Standoff_Assy.dae
+[16.141s] -- Symlinking: /home/turtle/ros2_ws/src/install/projet2025/share/projet2025//models/turtlebot/meshes/create_body.dae
+[16.155s] -- Symlinking: /home/turtle/ros2_ws/src/install/projet2025/share/projet2025//models/turtlebot/meshes/plate_0_logo.dae
+[16.167s] -- Symlinking: /home/turtle/ros2_ws/src/install/projet2025/share/projet2025//models/turtlebot/meshes/plate_1_logo.dae
+[16.178s] -- Symlinking: /home/turtle/ros2_ws/src/install/projet2025/share/projet2025//models/turtlebot/meshes/plate_2_logo.dae
+[16.192s] -- Symlinking: /home/turtle/ros2_ws/src/install/projet2025/share/projet2025//models/turtlebot/model-1_2.sdf
+[16.206s] -- Symlinking: /home/turtle/ros2_ws/src/install/projet2025/share/projet2025//models/turtlebot/model-1_3.sdf
+[16.218s] -- Symlinking: /home/turtle/ros2_ws/src/install/projet2025/share/projet2025//models/turtlebot/model-1_4.sdf
+[16.230s] -- Symlinking: /home/turtle/ros2_ws/src/install/projet2025/share/projet2025//models/turtlebot/model.config
+[16.241s] -- Symlinking: /home/turtle/ros2_ws/src/install/projet2025/share/projet2025//models/turtlebot/model.sdf
+[16.255s] -- Symlinking: /home/turtle/ros2_ws/src/install/projet2025/share/projet2025//models/turtlebot3_burger/model.config
+[16.268s] -- Symlinking: /home/turtle/ros2_ws/src/install/projet2025/share/projet2025//models/turtlebot3_burger/model.sdf
+[16.281s] -- Symlinking: /home/turtle/ros2_ws/src/install/projet2025/share/projet2025//models/turtlebot3_common/meshes/burger_base.dae
+[16.294s] -- Symlinking: /home/turtle/ros2_ws/src/install/projet2025/share/projet2025//models/turtlebot3_common/meshes/burger_base.stl
+[16.307s] -- Symlinking: /home/turtle/ros2_ws/src/install/projet2025/share/projet2025//models/turtlebot3_common/meshes/lds.dae
+[16.320s] -- Symlinking: /home/turtle/ros2_ws/src/install/projet2025/share/projet2025//models/turtlebot3_common/meshes/left_tire.stl
+[16.333s] -- Symlinking: /home/turtle/ros2_ws/src/install/projet2025/share/projet2025//models/turtlebot3_common/meshes/lidar.stl
+[16.344s] -- Symlinking: /home/turtle/ros2_ws/src/install/projet2025/share/projet2025//models/turtlebot3_common/meshes/r200.dae
+[16.357s] -- Symlinking: /home/turtle/ros2_ws/src/install/projet2025/share/projet2025//models/turtlebot3_common/meshes/right_tire.stl
+[16.370s] -- Symlinking: /home/turtle/ros2_ws/src/install/projet2025/share/projet2025//models/turtlebot3_common/meshes/tire.dae
+[16.382s] -- Symlinking: /home/turtle/ros2_ws/src/install/projet2025/share/projet2025//models/turtlebot3_common/meshes/waffle_base.dae
+[16.393s] -- Symlinking: /home/turtle/ros2_ws/src/install/projet2025/share/projet2025//models/turtlebot3_common/meshes/waffle_pi_base.dae
+[16.407s] -- Symlinking: /home/turtle/ros2_ws/src/install/projet2025/share/projet2025//models/turtlebot3_common/model.config
+[16.420s] -- Symlinking: /home/turtle/ros2_ws/src/install/projet2025/share/projet2025//params/turtlebot3_bridge.yaml
+[16.433s] -- Symlinking: /home/turtle/ros2_ws/src/install/projet2025/share/projet2025//rviz/tb3_gazebo.rviz
+[16.451s] -- Symlinking: /home/turtle/ros2_ws/src/install/projet2025/share/projet2025//urdf/common_properties.urdf
+[16.463s] -- Symlinking: /home/turtle/ros2_ws/src/install/projet2025/share/projet2025//urdf/turtlebot3_burger.urdf
+[16.475s] -- Symlinking: /home/turtle/ros2_ws/src/install/projet2025/share/projet2025//urdf/turtlebot3_waffle.urdf
+[16.487s] -- Symlinking: /home/turtle/ros2_ws/src/install/projet2025/share/projet2025//urdf/turtlebot3_waffle_pi.urdf
+[16.502s] -- Symlinking: /home/turtle/ros2_ws/src/install/projet2025/share/projet2025//worlds/empty.sdf
+[16.514s] -- Symlinking: /home/turtle/ros2_ws/src/install/projet2025/share/projet2025//worlds/projet.sdf
+[16.526s] -- Symlinking: /home/turtle/ros2_ws/src/install/projet2025/include//projet2025/turtlebot3_drive.hpp
+[16.541s] -- Symlinking: /home/turtle/ros2_ws/src/install/projet2025/share/ament_index/resource_index/package_run_dependencies/projet2025
+[16.553s] -- Symlinking: /home/turtle/ros2_ws/src/install/projet2025/share/ament_index/resource_index/parent_prefix_path/projet2025
+[16.571s] -- Symlinking: /home/turtle/ros2_ws/src/install/projet2025/share/projet2025/environment/ament_prefix_path.sh
+[16.595s] -- Symlinking: /home/turtle/ros2_ws/src/install/projet2025/share/projet2025/environment/ament_prefix_path.dsv
+[16.611s] -- Symlinking: /home/turtle/ros2_ws/src/install/projet2025/share/projet2025/environment/path.sh
+[16.624s] -- Symlinking: /home/turtle/ros2_ws/src/install/projet2025/share/projet2025/environment/path.dsv
+[16.638s] -- Symlinking: /home/turtle/ros2_ws/src/install/projet2025/share/projet2025/local_setup.bash
+[16.651s] -- Symlinking: /home/turtle/ros2_ws/src/install/projet2025/share/projet2025/local_setup.sh
+[16.664s] -- Symlinking: /home/turtle/ros2_ws/src/install/projet2025/share/projet2025/local_setup.zsh
+[16.676s] -- Symlinking: /home/turtle/ros2_ws/src/install/projet2025/share/projet2025/local_setup.dsv
+[16.689s] -- Symlinking: /home/turtle/ros2_ws/src/install/projet2025/share/projet2025/package.dsv
+[16.702s] -- Symlinking: /home/turtle/ros2_ws/src/install/projet2025/share/ament_index/resource_index/packages/projet2025
+[16.716s] -- Symlinking: /home/turtle/ros2_ws/src/install/projet2025/share/projet2025/cmake/ament_cmake_export_include_directories-extras.cmake
+[16.728s] -- Symlinking: /home/turtle/ros2_ws/src/install/projet2025/share/projet2025/cmake/ament_cmake_export_dependencies-extras.cmake
+[16.740s] -- Symlinking: /home/turtle/ros2_ws/src/install/projet2025/share/projet2025/cmake/projet2025Config.cmake
+[16.752s] -- Symlinking: /home/turtle/ros2_ws/src/install/projet2025/share/projet2025/cmake/projet2025Config-version.cmake
+[16.765s] -- Symlinking: /home/turtle/ros2_ws/src/install/projet2025/share/projet2025/package.xml
+[16.779s] Invoked command in '/home/turtle/ros2_ws/src/build/projet2025' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/turtle/ros2_ws/src/install/test_exam:/home/turtle/ros2_ws/src/install/teleop_turtle:/home/turtle/ros2_ws/src/install/mydrone:/home/turtle/ros2_ws/src/install/mybot_teleop:/home/turtle/ros2_ws/src/install/mybot_description:/home/turtle/ros2_ws/src/install/mybot_color:/home/turtle/ros2_ws/src/install/mybot:/home/turtle/ros2_ws/install/test_exam:/home/turtle/ros2_ws/install/teleop_turtle:/home/turtle/ros2_ws/install/mydrone:/home/turtle/ros2_ws/install/mybot_teleop:/home/turtle/ros2_ws/install/mybot_description:/home/turtle/ros2_ws/install/mybot_color:/home/turtle/ros2_ws/install/mybot:/opt/ros/humble /usr/bin/cmake --install /home/turtle/ros2_ws/src/build/projet2025

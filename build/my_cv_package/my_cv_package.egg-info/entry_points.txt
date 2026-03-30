@@ -1,0 +1,3 @@
+[console_scripts]
+cv_plot = my_cv_package.cv_plot:main
+
