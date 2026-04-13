@@ -21,6 +21,7 @@ setup(
     entry_points={
         'console_scripts': [
             'run_robot = my_project_package.challenge1:main'
+	    'run_challenge2 = my_project_package.challenge2:main'
         ],
     },
 )
