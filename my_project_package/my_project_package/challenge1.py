@@ -1,63 +1,155 @@
 import rclpy
 from rclpy.node import Node
-from sensor_msgs.msg import CompressedImage
+from sensor_msgs.msg import Image, CompressedImage,LaserScan
 from geometry_msgs.msg import Twist
 import numpy as np
 import cv2
+from cv_bridge import CvBridge
 
 class LineFollower(Node):
     def __init__(self):
-        super().__init__('line_follower')
-        self.subscription = self.create_subscription(
-            CompressedImage, '/image_raw/compressed', self.listener_callback, 10)
+        super().__init__('line_follower') # initialisation du node line follower
+        self.subscription = self.create_subscription( # creation d'un abonnement aux images
+            CompressedImage, '/camera/image_raw/compressed', self.listener_callback, 10)
 
-        self.publisher = self.create_publisher(Twist, '/cmd_vel', 10) # publisher : pour faire bouger le robot
+        self.image_publisher = self.create_publisher(
+            Image,
+            '/processed_image',
+            10)
+        
+        self.vel_publisher = self.create_publisher(Twist, '/cmd_vel', 10) # publisher pour faire bouger le robot
+        
+        self.cv_bridge = CvBridge()
+
+        self.scan_sub = self.create_subscription(
+	    LaserScan, '/scan', self.scan_callback, 10)
+        self.obstacle_detecte = False
+
+        # Parametres PID
+        self.kp = 0.006    # Proportionnel : force de correction
+        self.ki = 0.0001   # Integral : correction d'erreur statique
+        self.kd = 0.0015   # Derivatif : amortisseur d'oscillations
+        
+        # Memoire du PID
+        self.last_error = 0.0
+        self.integral = 0.0
+        self.max_angular_vel = 1.5 # Limite de rotation pour eviter les tete-a-queue
 
     def listener_callback(self, msg):
-        np_arr = np.frombuffer(msg.data, np.uint8)
-        image = cv2.imdecode(np_arr, cv2.IMREAD_COLOR)
+        # self.get_logger().info("Image ok") # Optionnel : sature les logs sinon
 
-        if image is not None:
-            hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
-            lower_blue = np.array([60, 100, 100]) # Tirant vers le vert
-            upper_blue = np.array([130, 255, 255]) 
-            mask_blue = cv2.inRange(hsv, lower_blue, upper_blue)
-            mask = cv2.inRange(hsv, lower_blue, upper_blue)
+        try:
+            # Conversion de l'image ROS en OpenCV
+            cv_image = self.cv_bridge.compressed_imgmsg_to_cv2(msg, desired_encoding='bgr8')
+        except Exception as e:
+            self.get_logger().error(f"Erreur a la conversion de l'image: {e}")
+            return
+        
+        if cv_image is not None:
 
+            # Pretraitement
+            self.get_logger().info("Image ok")
+            height = cv_image.shape[0]
+            width = cv_image.shape[1]
+            image_center = width / 2
+            
+            # ROI : On ne garde que le bas de l'image
+            cv_image_roi = cv_image[int(height * 0.3):height, :] 
+            
+            hsv = cv2.cvtColor(cv_image_roi, cv2.COLOR_BGR2HSV) # conversion de BGR a HSV
+
+            # Masque Vert
+            mask_green = cv2.inRange(hsv, np.array([40, 70, 70]), np.array([100, 255, 255]))
+
+            # Masque Rouge (avec les deux plages HSV)
             mask_red1 = cv2.inRange(hsv, np.array([0, 100, 100]), np.array([10, 255, 255]))
-            mask_red2 = cv2.inRange(hsv, np.array([170, 100, 100]), np.array([180, 255, 255]))
+            mask_red2 = cv2.inRange(hsv, np.array([160, 100, 100]), np.array([180, 255, 255]))
             mask_red = cv2.bitwise_or(mask_red1, mask_red2)
 
-            mask_total = cv2.bitwise_or(mask_blue, mask_red)
-            M = cv2.moments(mask_total)
-            msg_twist = Twist()
+            msg_twist = Twist() # instance de type Twist pour la vitesse du robot
 
-            if M['m00'] > 0:
-                cx = int(M['m10']/M['m00'])
-                image_center = image.shape[1] / 2
-                error = cx - image_center
+            # Calcul des moments pour chaque couleur
+            M_v = cv2.moments(mask_green)
+            M_r = cv2.moments(mask_red)
+            mask_total = cv2.bitwise_or(mask_red, mask_green)
 
-                msg_twist.linear.x = 0.05
-                msg_twist.angular.z = -float(error) / 150.0
+            target_x = None
+
+            if self.obstacle_detecte:
+                if distance < seuil :
+		            msg_twist.linear.x = 0.0
+		            msg_twist.angular.z = 0.0
+		            self.get_logger().warn("ARRET : obstacle devant !")
+            
+            else : 
+                # LOGIQUE DE DECISION DU POINT CIBLE (target_x)
+                if M_v['m00'] > 0 and M_r['m00'] > 0:
+                    # On voit les deux : cible = milieu
+                    cx_v = M_v['m10'] / M_v['m00']
+                    cx_r = M_r['m10'] / M_r['m00']
+                    target_x = (cx_v + cx_r) / 2
+                    msg_twist.linear.x = 0.1 # Plus rapide quand on est bien entre les deux
                 
-                cv2.circle(image, (cx, int(image.shape[0]/2)), 10, (0,255,0), -1)
-            else:
-                msg_twist.linear.x = 0.0
-                msg_twist.angular.z = 0.2
+                elif M_v['m00'] > 0:
+                    # On ne voit que la gauche : on vise 150 pixels a droite de la ligne verte
+                    target_x = (M_v['m10'] / M_v['m00']) + 75
+                    msg_twist.linear.x = 0.05
+                
+                elif M_r['m00'] > 0:
+                    # On ne voit que la droite : on vise 150 pixels a gauche de la ligne rouge
+                    target_x = (M_r['m10'] / M_r['m00']) - 75
+                    msg_twist.linear.x = 0.05
 
-            self.publisher.publish(msg_twist)
+                # CALCUL DU PID SI UNE CIBLE EST TROUVeE
+                if target_x is not None:
+                    error = image_center - target_x # Erreur de trajectoire
+                    
+                    # Calculs PID
+                    P = self.kp * error
+                    self.integral += error
+                    I = self.ki * self.integral
+                    D = self.kd * (error - self.last_error)
+                    
+                    output_z = P + I + D
+                    
+                    # Limitation de la vitesse de rotation
+                    msg_twist.angular.z = max(min(output_z, self.max_angular_vel), -self.max_angular_vel)
+                    self.last_error = error
+                    
+                    # Dessin du centre pour le debug
+                    cv2.circle(cv_image_roi, (int(target_x), int(cv_image_roi.shape[0]/2)), 10, (0,255,0), -1)
+                else:
+                    # Si on ne voit rien du tout : on cherche en tournant
+                    msg_twist.linear.x = 0.0
+                    msg_twist.angular.z = 0.3
+                    self.integral = 0.0 # Reset l'integrale pour eviter l'accumulation hors ligne
 
-            cv2.imshow("Detection Ligne", image) # à cette ligne on affiche
-            cv2.imshow("Masque Total", mask_total)
-            cv2.waitKey(1)
+                # Publication des commandes et de l'image traitee
+                self.vel_publisher.publish(msg_twist)
+                ros_img = self.cv_bridge.cv2_to_imgmsg(cv_image, encoding="bgr8")
+                self.image_publisher.publish(ros_img)
+
+                # Fenetres de visualisation
+            try : 
+                cv2.imshow("Detection Ligne", cv_image_roi)
+                cv2.imshow("Masque Total", mask_total)
+                cv2.waitKey(1)
+            except Exception:
+                pass
 
 def main(args=None):
-    rclpy.init(args=args)
-    node = LineFollower()
-    rclpy.spin(node)
-    node.destroy_node()
-    rclpy.shutdown()
-    cv2.destroyAllWindows()
+    rclpy.init(args=args)  
+    node = LineFollower() # instancie le noeud
+    try:
+        rclpy.spin(node) # run le node en boucle 
+    except KeyboardInterrupt :
+        pass
+    finally : 
+        if rclpy.ok():
+            node.vel_publisher.publish(Twist()) # Arrete le robot avant de couper
+            node.destroy_node() # destruction du noeud
+            rclpy.shutdown() # eteindre
+        cv2.destroyAllWindows() # fermer la fenetre 
 
 if __name__ == '__main__':
     main()
