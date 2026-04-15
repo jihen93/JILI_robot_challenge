@@ -9,8 +9,9 @@ from cv_bridge import CvBridge
 class LineFollower(Node):
     def __init__(self):
         super().__init__('line_follower') # initialisation du node line follower
-        self.subscription = self.create_subscription( # creation d'un abonnement aux images
-            CompressedImage, '/camera/image_raw/compressed', self.listener_callback, 10)
+
+        #self.subscription = self.create_subscription(CompressedImage, '/camera/image_raw/compressed', self.listener_callback, 10) # pour le robot reel
+        self.subscription = self.create_subscription(Image, '/image_raw', self.listener_callback, 10) # pour la simu
 
         self.image_publisher = self.create_publisher(
             Image,
@@ -22,25 +23,40 @@ class LineFollower(Node):
         self.cv_bridge = CvBridge()
 
         self.scan_sub = self.create_subscription(
-	    LaserScan, '/scan', self.scan_callback, 10)
+            LaserScan, '/scan', self.scan_callback, 10)
         self.obstacle_detecte = False
+        self.distance = 0
 
         # Parametres PID
-        self.kp = 0.006    # Proportionnel : force de correction
-        self.ki = 0.0001   # Integral : correction d'erreur statique
-        self.kd = 0.0015   # Derivatif : amortisseur d'oscillations
+        self.kp = 0.004   # Proportionnel : force de correction
+        self.ki = 0   # Integral : correction d'erreur statique
+        self.kd = 0.0025   # Derivatif : amortisseur d'oscillations
         
         # Memoire du PID
         self.last_error = 0.0
         self.integral = 0.0
-        self.max_angular_vel = 1.5 # Limite de rotation pour eviter les tete-a-queue
+        self.max_angular_vel = 1.0 # Limite de rotation pour eviter les tete-a-queue
+
+
+    def scan_callback(self, msg):
+        points_devant = [r for r in msg.ranges[0:20] + msg.ranges[340:359] if r > 0.05]
+        
+        if points_devant:
+            distance_min = min(points_devant)
+            if distance_min <= 0.2:
+                self.obstacle_detecte = True
+                self.distance = distance_min
+            else:
+                self.obstacle_detecte = False
+
 
     def listener_callback(self, msg):
-        # self.get_logger().info("Image ok") # Optionnel : sature les logs sinon
+        self.get_logger().info("Image ok") # Optionnel : sature les logs sinon
 
         try:
             # Conversion de l'image ROS en OpenCV
-            cv_image = self.cv_bridge.compressed_imgmsg_to_cv2(msg, desired_encoding='bgr8')
+            #cv_image = self.cv_bridge.compressed_imgmsg_to_cv2(msg, desired_encoding='bgr8') #pour le robot reel 
+            cv_image = self.cv_bridge.imgmsg_to_cv2(msg, desired_encoding='bgr8') # pour la simu
         except Exception as e:
             self.get_logger().error(f"Erreur a la conversion de l'image: {e}")
             return
@@ -76,10 +92,9 @@ class LineFollower(Node):
             target_x = None
 
             if self.obstacle_detecte:
-                if distance < seuil :
-		            msg_twist.linear.x = 0.0
-		            msg_twist.angular.z = 0.0
-		            self.get_logger().warn("ARRET : obstacle devant !")
+                msg_twist.linear.x = 0.0
+                msg_twist.angular.z = 0.0
+                self.get_logger().warn("ARRET : obstacle devant !")
             
             else : 
                 # LOGIQUE DE DECISION DU POINT CIBLE (target_x)
@@ -92,12 +107,12 @@ class LineFollower(Node):
                 
                 elif M_v['m00'] > 0:
                     # On ne voit que la gauche : on vise 150 pixels a droite de la ligne verte
-                    target_x = (M_v['m10'] / M_v['m00']) + 75
+                    target_x = (M_v['m10'] / M_v['m00']) + 80
                     msg_twist.linear.x = 0.05
                 
                 elif M_r['m00'] > 0:
                     # On ne voit que la droite : on vise 150 pixels a gauche de la ligne rouge
-                    target_x = (M_r['m10'] / M_r['m00']) - 75
+                    target_x = (M_r['m10'] / M_r['m00']) - 80
                     msg_twist.linear.x = 0.05
 
                 # CALCUL DU PID SI UNE CIBLE EST TROUVeE
@@ -124,12 +139,12 @@ class LineFollower(Node):
                     msg_twist.angular.z = 0.3
                     self.integral = 0.0 # Reset l'integrale pour eviter l'accumulation hors ligne
 
-                # Publication des commandes et de l'image traitee
-                self.vel_publisher.publish(msg_twist)
-                ros_img = self.cv_bridge.cv2_to_imgmsg(cv_image, encoding="bgr8")
-                self.image_publisher.publish(ros_img)
+            # Publication des commandes et de l'image traitee (Désindenté pour être hors du else)
+            self.vel_publisher.publish(msg_twist)
+            ros_img = self.cv_bridge.cv2_to_imgmsg(cv_image_roi, encoding="bgr8")
+            self.image_publisher.publish(ros_img)
 
-                # Fenetres de visualisation
+            # Fenetres de visualisation
             try : 
                 cv2.imshow("Detection Ligne", cv_image_roi)
                 cv2.imshow("Masque Total", mask_total)
