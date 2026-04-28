@@ -2,10 +2,12 @@ import rclpy
 from rclpy.node import Node
 from geometry_msgs.msg import Twist
 import cv2
-import mediapipe as mp
 
-import mediapipe.python.solutions.hands as mp_hands
-import mediapipe.python.solutions.drawing_utils as mp_drawing
+
+import mediapipe as mp
+from mediapipe.python.solutions import hands as mp_hands
+from mediapipe.python.solutions import drawing_utils as mp_drawing
+
 
 class HumanControlNode(Node):
     def __init__(self):
@@ -17,11 +19,13 @@ class HumanControlNode(Node):
         self.hands = self.mp_hands.Hands(min_detection_confidence=0.7, min_tracking_confidence=0.5)
         self.mp_draw = mp_drawing
 
-        self.cap = cv2.VideoCapture(0)
+        self.cap = cv2.VideoCapture("http://host.docker.internal:8080/video")
+        self.cap.set(cv2.CAP_PROP_BUFFERSIZE, 1)  # ← vider le buffer
         self.timer = self.create_timer(0.1, self.process_frame)
 
     def process_frame(self):
-        success, image = self.cap.read()
+        self.cap.grab()
+        success, image = self.cap.retrieve()
         if not success: return
 
         image_rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
