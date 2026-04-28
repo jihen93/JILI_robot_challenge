@@ -1,0 +1,10 @@
+/home/turtle/ros2_ws/src/build/projet2025/CMakeFiles/uninstall.dir
+/home/turtle/ros2_ws/src/build/projet2025/CMakeFiles/projet2025_uninstall.dir
+/home/turtle/ros2_ws/src/build/projet2025/CMakeFiles/turtlebot3_drive.dir
+/home/turtle/ros2_ws/src/build/projet2025/CMakeFiles/test.dir
+/home/turtle/ros2_ws/src/build/projet2025/CMakeFiles/edit_cache.dir
+/home/turtle/ros2_ws/src/build/projet2025/CMakeFiles/rebuild_cache.dir
+/home/turtle/ros2_ws/src/build/projet2025/CMakeFiles/list_install_components.dir
+/home/turtle/ros2_ws/src/build/projet2025/CMakeFiles/install.dir
+/home/turtle/ros2_ws/src/build/projet2025/CMakeFiles/install/local.dir
+/home/turtle/ros2_ws/src/build/projet2025/CMakeFiles/install/strip.dir
