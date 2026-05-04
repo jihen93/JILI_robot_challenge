@@ -1,1 +1,0 @@
-/home/turtle/ros2_ws/src/projet2025/launch/empty_world.launch.py

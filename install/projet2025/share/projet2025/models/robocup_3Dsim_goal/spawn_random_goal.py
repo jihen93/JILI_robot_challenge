@@ -1,1 +1,0 @@
-/home/turtle/ros2_ws/src/projet2025/models/robocup_3Dsim_goal/spawn_random_goal.py

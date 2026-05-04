@@ -20,8 +20,12 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'run_robot = my_project_package.challenge1:main'
-	    'run_challenge2 = my_project_package.challenge2:main'
+            'challenge1 = my_project_package.challenge1:main',
+            'challenge2 = my_project_package.challenge2:main',
+            'challenge4 = my_project_package.challenge4:main',
+            'challenge5 = my_project_package.challenge5:main',
+            'hsvtune = my_project_package.hsv_calibration_node:main'
+            
         ],
     },
 )

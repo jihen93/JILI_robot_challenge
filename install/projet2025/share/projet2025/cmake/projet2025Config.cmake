@@ -1,1 +1,0 @@
-/home/turtle/ros2_ws/src/build/projet2025/ament_cmake_core/projet2025Config.cmake

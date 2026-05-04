@@ -1,1 +1,0 @@
-/home/turtle/ros2_ws/src/projet2025/launch/spawn_turtlebot3.launch.py
